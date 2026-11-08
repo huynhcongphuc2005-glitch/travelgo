@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Môi trường & bí mật
+.env
+.env.*
+!.env.example
+
+# Dữ liệu chạy thực tế (được tạo tự động)
+data/*.json
+!data/.gitkeep
+
+# Log & coverage
+logs/
+*.log
+npm-debug.log*
+coverage/
+.nyc_output/
+
+# Hệ điều hành / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp

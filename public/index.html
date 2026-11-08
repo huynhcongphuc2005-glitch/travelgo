@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TravelGo - Đặt vé máy bay & khách sạn giá tốt</title>
+    <meta name="description" content="TravelGo: tìm và đặt vé máy bay, khách sạn trong nước nhanh chóng, giá minh bạch." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <a href="/" class="logo" aria-label="TravelGo trang chủ">✈️ Travel<span>Go</span></a>
+        <nav class="nav" aria-label="Điều hướng chính">
+          <button class="nav__link is-active" data-view="search" type="button">Tìm kiếm</button>
+          <button class="nav__link" data-view="bookings" type="button">Đơn của tôi</button>
+        </nav>
+        <div class="auth-area" id="authArea"></div>
+      </div>
+    </header>
+
+    <main>
+      <!-- ===== VIEW: TÌM KIẾM ===== -->
+      <section id="viewSearch">
+        <div class="hero">
+          <div class="container">
+            <h1>Khám phá Việt Nam, đặt chỗ trong vài phút</h1>
+            <p class="hero__sub">Vé máy bay và khách sạn với giá minh bạch, không phí ẩn.</p>
+
+            <div class="search-card">
+              <div class="tabs" role="tablist">
+                <button class="tab is-active" role="tab" data-tab="flights" type="button">✈️ Vé máy bay</button>
+                <button class="tab" role="tab" data-tab="hotels" type="button">🏨 Khách sạn</button>
+              </div>
+
+              <form id="flightForm" class="search-form" novalidate>
+                <label>Điểm đi
+                  <select name="from" id="flightFrom" required></select>
+                </label>
+                <label>Điểm đến
+                  <select name="to" id="flightTo" required></select>
+                </label>
+                <label>Ngày bay
+                  <input type="date" name="date" id="flightDate" required />
+                </label>
+                <label>Hành khách
+                  <input type="number" name="passengers" min="1" max="9" value="1" required />
+                </label>
+                <button class="btn btn--accent" type="submit">Tìm chuyến bay</button>
+              </form>
+
+              <form id="hotelForm" class="search-form" hidden novalidate>
+                <label>Điểm đến
+                  <select name="city" id="hotelCity"></select>
+                </label>
+                <label>Nhận phòng
+                  <input type="date" name="checkIn" id="hotelIn" required />
+                </label>
+                <label>Trả phòng
+                  <input type="date" name="checkOut" id="hotelOut" required />
+                </label>
+                <label>Khách / Phòng
+                  <span class="inline-pair">
+                    <input type="number" name="guests" min="1" max="20" value="2" aria-label="Số khách" />
+                    <input type="number" name="rooms" min="1" max="10" value="1" aria-label="Số phòng" />
+                  </span>
+                </label>
+                <button class="btn btn--accent" type="submit">Tìm khách sạn</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div id="results" hidden>
+            <div class="results__head">
+              <h2 id="resultsTitle"></h2>
+              <label class="sort">Sắp xếp
+                <select id="sortSelect"></select>
+              </label>
+            </div>
+            <div id="resultsList" class="results__list" aria-live="polite"></div>
+          </div>
+
+          <section id="destinationsSection" class="section">
+            <h2>Điểm đến nổi bật</h2>
+            <div id="destinations" class="grid"></div>
+          </section>
+
+          <section class="section features">
+            <div class="feature"><span>💸</span><h3>Giá minh bạch</h3><p>Tổng tiền hiển thị rõ ràng trước khi bạn xác nhận.</p></div>
+            <div class="feature"><span>⚡</span><h3>Đặt chỗ nhanh</h3><p>Chỉ vài bước là có mã đặt chỗ xác nhận ngay.</p></div>
+            <div class="feature"><span>🛡️</span><h3>Quản lý dễ dàng</h3><p>Xem và hủy đơn bất cứ lúc nào trong mục “Đơn của tôi”.</p></div>
+          </section>
+        </div>
+      </section>
+
+      <!-- ===== VIEW: ĐƠN CỦA TÔI ===== -->
+      <section id="viewBookings" hidden>
+        <div class="container section">
+          <h2>Đơn đặt của tôi</h2>
+          <div id="bookingsList" class="results__list"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© 2026 TravelGo · Đồ án cuối khóa · Dữ liệu chỉ mang tính minh họa.</p>
+      </div>
+    </footer>
+
+    <!-- ===== DIALOG: ĐĂNG NHẬP / ĐĂNG KÝ ===== -->
+    <dialog id="authDialog" aria-labelledby="authTitle">
+      <form method="dialog" class="dialog__close"><button aria-label="Đóng">✕</button></form>
+      <h2 id="authTitle">Đăng nhập</h2>
+      <p id="authNotice" class="notice" hidden></p>
+      <div class="tabs tabs--small">
+        <button class="tab is-active" data-auth="login" type="button">Đăng nhập</button>
+        <button class="tab" data-auth="register" type="button">Đăng ký</button>
+      </div>
+      <form id="authForm" class="stack" novalidate>
+        <label id="nameField" hidden>Họ tên <input type="text" name="name" autocomplete="name" /></label>
+        <label>Email <input type="email" name="email" autocomplete="email" required /></label>
+        <label>Mật khẩu <input type="password" name="password" autocomplete="current-password" minlength="6" required /></label>
+        <p class="form-error" id="authError" role="alert"></p>
+        <button class="btn btn--primary" type="submit" id="authSubmit">Đăng nhập</button>
+      </form>
+    </dialog>
+
+    <!-- ===== DIALOG: ĐẶT CHỖ ===== -->
+    <dialog id="bookingDialog" aria-labelledby="bookingTitle">
+      <form method="dialog" class="dialog__close"><button aria-label="Đóng">✕</button></form>
+      <h2 id="bookingTitle">Xác nhận đặt chỗ</h2>
+      <div id="bookingSummary" class="summary"></div>
+      <form id="bookingForm" class="stack" novalidate>
+        <div id="passengerFields" class="stack"></div>
+        <label>Số điện thoại liên hệ
+          <input type="tel" name="contactPhone" placeholder="0901234567" required />
+        </label>
+        <label>Phương thức thanh toán
+          <select name="paymentMethod">
+            <option value="card">Thẻ tín dụng / ghi nợ</option>
+            <option value="bank_transfer">Chuyển khoản ngân hàng</option>
+            <option value="e_wallet">Ví điện tử</option>
+            <option value="pay_at_property">Thanh toán tại nơi lưu trú</option>
+          </select>
+        </label>
+        <p class="total">Tổng thanh toán: <strong id="bookingTotal"></strong></p>
+        <p class="form-error" id="bookingError" role="alert"></p>
+        <button class="btn btn--primary" type="submit" id="bookingSubmit">Xác nhận đặt chỗ</button>
+        <p class="hint">Đây là hệ thống demo, không phát sinh thanh toán thật.</p>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>

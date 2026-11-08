@@ -1,0 +1,16 @@
+services:
+  travelgo:
+    build: .
+    container_name: travelgo
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      JWT_SECRET: ${JWT_SECRET:-doi-chuoi-bi-mat-nay-truoc-khi-deploy}
+    volumes:
+      - travelgo-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  travelgo-data:

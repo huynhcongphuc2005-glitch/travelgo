@@ -1,0 +1,8 @@
+[
+  { "city": "Đà Nẵng", "tagline": "Thành phố đáng sống bên bờ biển", "emoji": "🌉", "theme": ["#0770cd", "#00b4d8"] },
+  { "city": "Phú Quốc", "tagline": "Đảo ngọc với bãi biển trong xanh", "emoji": "🏝️", "theme": ["#0096c7", "#48cae4"] },
+  { "city": "Đà Lạt", "tagline": "Thành phố ngàn hoa se lạnh", "emoji": "🌲", "theme": ["#386641", "#a7c957"] },
+  { "city": "Hà Nội", "tagline": "Nghìn năm văn hiến, ẩm thực phố cổ", "emoji": "🏯", "theme": ["#6a4c93", "#c77dff"] },
+  { "city": "Nha Trang", "tagline": "Vịnh biển đẹp với lặn ngắm san hô", "emoji": "🐠", "theme": ["#00509d", "#00a6fb"] },
+  { "city": "Huế", "tagline": "Cố đô trầm mặc bên sông Hương", "emoji": "🏮", "theme": ["#5f0f40", "#9a031e"] }
+]

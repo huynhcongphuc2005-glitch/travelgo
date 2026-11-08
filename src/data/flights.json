@@ -1,0 +1,29 @@
+{
+  "airports": [
+    { "code": "SGN", "city": "Hồ Chí Minh", "name": "Sân bay Tân Sơn Nhất" },
+    { "code": "HAN", "city": "Hà Nội", "name": "Sân bay Nội Bài" },
+    { "code": "DAD", "city": "Đà Nẵng", "name": "Sân bay quốc tế Đà Nẵng" },
+    { "code": "PQC", "city": "Phú Quốc", "name": "Sân bay quốc tế Phú Quốc" },
+    { "code": "CXR", "city": "Nha Trang", "name": "Sân bay quốc tế Cam Ranh" },
+    { "code": "DLI", "city": "Đà Lạt", "name": "Sân bay Liên Khương" },
+    { "code": "HUI", "city": "Huế", "name": "Sân bay Phú Bài" }
+  ],
+  "airlines": [
+    { "code": "VN", "name": "Vietnam Airlines", "priceFactor": 1.25 },
+    { "code": "VJ", "name": "Vietjet Air", "priceFactor": 0.85 },
+    { "code": "QH", "name": "Bamboo Airways", "priceFactor": 1.0 }
+  ],
+  "slots": ["06:15", "09:40", "13:25", "18:50"],
+  "routes": [
+    { "from": "SGN", "to": "HAN", "durationMin": 125, "basePrice": 1650000 },
+    { "from": "SGN", "to": "DAD", "durationMin": 85, "basePrice": 1200000 },
+    { "from": "SGN", "to": "PQC", "durationMin": 60, "basePrice": 950000 },
+    { "from": "SGN", "to": "CXR", "durationMin": 60, "basePrice": 890000 },
+    { "from": "SGN", "to": "DLI", "durationMin": 55, "basePrice": 820000 },
+    { "from": "HAN", "to": "DAD", "durationMin": 80, "basePrice": 1100000 },
+    { "from": "HAN", "to": "PQC", "durationMin": 140, "basePrice": 1850000 },
+    { "from": "HAN", "to": "CXR", "durationMin": 110, "basePrice": 1500000 },
+    { "from": "HAN", "to": "HUI", "durationMin": 75, "basePrice": 1050000 },
+    { "from": "DAD", "to": "CXR", "durationMin": 65, "basePrice": 780000 }
+  ]
+}
